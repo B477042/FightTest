@@ -8,7 +8,7 @@ public class ActionFight : ModuleRules
 	{
 		PCHUsage = PCHUsageMode.UseExplicitOrSharedPCHs;
 	
-		PublicDependencyModuleNames.AddRange(new string[] { "Core", "CoreUObject", "Engine", "InputCore" });
+		PublicDependencyModuleNames.AddRange(new string[] { "Core", "CoreUObject", "Engine", "InputCore", "UMG", "AIModule", "NavigationSystem", "GameplayTasks", "Json", "JsonUtilities", "SlateCore", "EngineSettings", "MoviePlayer", "Paper2D" });
 
 		PrivateDependencyModuleNames.AddRange(new string[] {  });
 
