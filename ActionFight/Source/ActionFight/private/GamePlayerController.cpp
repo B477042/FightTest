@@ -26,4 +26,5 @@ void AGamePlayerController::PostInitializeComponents()
 void AGamePlayerController::OnPossess(APawn* aPawn)
 {
 	Super::OnPossess(aPawn);
+	//AFGame(Log, TEXT("To Posses : %s"), *aPawn->GetFName().ToString());
 }

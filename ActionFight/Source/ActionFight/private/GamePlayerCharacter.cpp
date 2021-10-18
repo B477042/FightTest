@@ -2,6 +2,7 @@
 
 
 #include "GamePlayerCharacter.h"
+#include "..\public\GamePlayerCharacter.h"
 
 AGamePlayerCharacter::AGamePlayerCharacter()
 {
@@ -9,10 +10,22 @@ AGamePlayerCharacter::AGamePlayerCharacter()
 	// Init Default Subobject
 	MainCam = CreateDefaultSubobject<UCameraComponent>(TEXT("MainCamera"));
 	MainCamSpringArm = CreateDefaultSubobject<USpringArmComponent>(TEXT("MainCameraSpringArm"));
+	//================================
+	// Init Components Tree
+
+	MainCam->SetupAttachment(MainCamSpringArm);
+	MainCamSpringArm->SetupAttachment(RootComponent);
 
 
 	//================================
 	// Init Components value
+
+	// Spring Arm
+	MainCamSpringArm->SetRelativeLocation(FVector(0, 130, 70));
+	MainCamSpringArm->TargetArmLength = 220.0f;
+	MainCamSpringArm->ProbeSize = 14.0f;
+	MainCamSpringArm->bUsePawnControlRotation = true;
+	
 
 	//================================
 	// Load Assets
@@ -22,15 +35,10 @@ AGamePlayerCharacter::AGamePlayerCharacter()
 		GetMesh()->SetSkeletalMesh(SM_Body.Object);
 		GetMesh()->SetWorldLocationAndRotation(FVector(0, 0, -90.0f), FRotator(0, -90, 0));
 	}
-	//================================
-	// Init Components Tree
-
-	MainCam->SetupAttachment(MainCamSpringArm);
-	MainCamSpringArm->SetupAttachment(RootComponent);
-
+	
 	//================================
 	// Set Normal Default Value
-	CurrentVelocity = 0.0f;
+	CurrentVelocity = 78.f;
 }
 
 void AGamePlayerCharacter::BeginPlay()
@@ -48,10 +56,11 @@ void AGamePlayerCharacter::MoveLeft(float NewAxisValue)
 
 
 
-	FVector Direction = FRotationMatrix(Controller->GetControlRotation()).GetScaledAxis(EAxis::X);
+	FVector Direction = FRotationMatrix(Controller->GetControlRotation()).GetScaledAxis(EAxis::Y);
 	Direction.Z = 0.0f;
 	Direction.Normalize();
 	MoveDirection += Direction * FMath::Clamp(NewAxisValue, -1.0f, 1.0f);
+//	AFGame(Log, TEXT("left"));
 
 }
 
@@ -62,12 +71,24 @@ void AGamePlayerCharacter::MoveForward(float NewAxisValue)
 
 	////양수면 오른쪽, 음수면 왼쪽
 
-	FVector Direction = FRotationMatrix(Controller->GetControlRotation()).GetScaledAxis(EAxis::Y);
+	FVector Direction = FRotationMatrix(Controller->GetControlRotation()).GetScaledAxis(EAxis::X);
 	Direction.Z = 0.0f;
 	Direction.Normalize();
 	MoveDirection += Direction * FMath::Clamp(NewAxisValue, -1.0f, 1.0f);
+//	AFGame(Log, TEXT("forwr"));
 	//AFGame(Log,TEXT("forwr"));
 
+}
+
+void AGamePlayerCharacter::LookUp(float NewAxisValue)
+{
+	AddControllerPitchInput(NewAxisValue);
+
+}
+
+void AGamePlayerCharacter::TurnCamera(float NewAxisValue)
+{
+	AddControllerYawInput(NewAxisValue);
 }
 
 void AGamePlayerCharacter::Move(float DeltaTime)
@@ -96,5 +117,6 @@ void AGamePlayerCharacter::SetupPlayerInputComponent(UInputComponent* PlayerInpu
 
 	PlayerInputComponent->BindAxis(TEXT("MoveForward"), this,&AGamePlayerCharacter::MoveForward);
 	PlayerInputComponent->BindAxis(TEXT("MoveLeft"), this, &AGamePlayerCharacter::MoveLeft);
-
+	PlayerInputComponent->BindAxis(TEXT("LookUp"), this, &AGamePlayerCharacter::LookUp);
+	PlayerInputComponent->BindAxis(TEXT("TurnCamera"), this, &AGamePlayerCharacter::TurnCamera);
 }

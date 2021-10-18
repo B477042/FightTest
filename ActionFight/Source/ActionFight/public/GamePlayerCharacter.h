@@ -24,7 +24,9 @@ protected:
 	// Axis Input
 	void MoveLeft(float NewAxisValue);
 	void MoveForward(float NewAxisValue);
-	
+	void LookUp(float NewAxisValue);
+	void TurnCamera(float NewAxisValue);
+
 	//===================================
 	// Movement
 	void Move(float DeltaTime);
