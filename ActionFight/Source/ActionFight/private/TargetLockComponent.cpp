@@ -20,7 +20,23 @@ void UTargetLockComponent::BeginPlay()
 	Super::BeginPlay();
 
 	// ...
-	
+	SetComponentTickEnabled ( false);
+
+}
+
+void UTargetLockComponent::rotateCameraToTarget()
+{
+	if (!SpringArm.IsValid())
+	{
+		AFGame(Error, TEXT("Spring Arm is invalid"));
+		SetComponentTickEnabled(false);
+		return;
+	}
+
+
+
+
+
 }
 
 
@@ -30,5 +46,47 @@ void UTargetLockComponent::TickComponent(float DeltaTime, ELevelTick TickType, F
 	Super::TickComponent(DeltaTime, TickType, ThisTickFunction);
 
 	// ...
+}
+
+bool UTargetLockComponent::LockOnTarget(AActor* const OtherActor)
+{
+	if (!OtherActor)
+	{
+		AFGame(Error, TEXT("Other Actor is nullptr")));
+		return false;
+	}
+	//Check Spring Arm is valid
+	if (!SpringArm.IsValid())
+	{
+		AFGame(Error, TEXT("SPring Arm is nullptr "));
+		return false;
+	}
+
+	//Forget previous target actor
+	if (TargetActor.IsValid())
+	{
+		TargetActor.Get();
+	}
+	//Set New Target actor
+	TargetActor = OtherActor;
+
+	
+	SetComponentTickEnabled(true);
+
+	return true;
+}
+
+bool UTargetLockComponent::ReleaseTarget()
+{
+	if (TargetActor.IsValid())
+	{
+		TargetActor.Get();
+		return true;
+	}
+
+
+	SetComponentTickEnabled(false);
+
+	return false;
 }
 
