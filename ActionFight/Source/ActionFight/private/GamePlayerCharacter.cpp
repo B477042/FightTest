@@ -24,7 +24,7 @@ AGamePlayerCharacter::AGamePlayerCharacter()
 	MainCamSpringArm->SetRelativeLocation(FVector(0, 130, 70));
 	MainCamSpringArm->TargetArmLength = 220.0f;
 	MainCamSpringArm->ProbeSize = 14.0f;
-	MainCamSpringArm->bUsePawnControlRotation = true;
+	MainCamSpringArm->bUsePawnControlRotation = false;
 	
 
 	//================================
