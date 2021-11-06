@@ -39,6 +39,7 @@ public:
 	*/
 	bool ReleaseTarget();
 
+	bool IsTargetSetted() { return targetActor.IsValid(); }
 
 protected:
 	/*

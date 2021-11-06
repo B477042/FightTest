@@ -58,8 +58,16 @@ void UTargetLockComponent::rotateCameraToTarget()
 		ReleaseTarget();
 		return;
 	}
+	/*
+	* Spring Arm의 전방이 Target을 향하면 된다. 그러면 Target을 초점으로 카메라가 회전하게 된다.
+	*/
+	FVector dir_springArm = springArm->GetForwardVector();
+	FVector dir_ToTarget = targetActor->GetActorLocation()- GetOwner()->GetActorLocation();
 
-	
+	//각도 계산
+	float angle = FMath::Acos(FVector::DotProduct(dir_springArm, dir_ToTarget) /
+		(dir_springArm.Size()*dir_ToTarget.Size()));
+	AFGame(Log, TEXT("Angle : %f"), angle);
 
 
 }
@@ -111,7 +119,7 @@ bool UTargetLockComponent::LockOnTarget(AActor* const OtherActor)
 	targetActor = OtherActor;
 
 	//Spring Arm의 회전을 자유롭게 해줍니다
-	springArm->bUsePawnControlRotation = false;
+	//springArm->bUsePawnControlRotation = false;
 	SetComponentTickEnabled(true);
 
 	return true;
@@ -122,7 +130,7 @@ bool UTargetLockComponent::ReleaseTarget()
 	//타겟을 잊습니다
 	if (targetActor.IsValid())
 	{
-		springArm->bUsePawnControlRotation = true;
+		//springArm->bUsePawnControlRotation = true;
 		targetActor.Get();
 		SetComponentTickEnabled(false);
 		return true;

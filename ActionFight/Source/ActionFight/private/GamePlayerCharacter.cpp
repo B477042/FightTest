@@ -10,6 +10,7 @@ AGamePlayerCharacter::AGamePlayerCharacter()
 	// Init Default Subobject
 	MainCam = CreateDefaultSubobject<UCameraComponent>(TEXT("MainCamera"));
 	MainCamSpringArm = CreateDefaultSubobject<USpringArmComponent>(TEXT("MainCameraSpringArm"));
+	TargetLockComponent = CreateDefaultSubobject<UTargetLockComponent>(TEXT("TargetLockComponent"));
 	//================================
 	// Init Components Tree
 
@@ -102,6 +103,15 @@ void AGamePlayerCharacter::Move(float DeltaTime)
 	MoveDirection.Set(0.0f, 0.0f, 0.0f);
 }
 
+void AGamePlayerCharacter::TargetLock()
+{
+	/*
+	* Camerar가 보고 있는 방향으로 Trace를 이용하여 탐지하고 탐지된 결과 중 가장 거리가 가까운 것을 락온한다.
+	*/
+	
+	AFGame(Log, TEXT("TET"));
+}
+
 void AGamePlayerCharacter::Tick(float DeltaTime)
 {
 	Super::Tick(DeltaTime);
@@ -119,4 +129,9 @@ void AGamePlayerCharacter::SetupPlayerInputComponent(UInputComponent* PlayerInpu
 	PlayerInputComponent->BindAxis(TEXT("MoveLeft"), this, &AGamePlayerCharacter::MoveLeft);
 	PlayerInputComponent->BindAxis(TEXT("LookUp"), this, &AGamePlayerCharacter::LookUp);
 	PlayerInputComponent->BindAxis(TEXT("TurnCamera"), this, &AGamePlayerCharacter::TurnCamera);
+
+	//=============================
+	// Action Input Bind
+	PlayerInputComponent->BindAction(TEXT("TargetLock"),EInputEvent::IE_Pressed ,this, &AGamePlayerCharacter::TargetLock);
+
 }

@@ -5,6 +5,7 @@
 #include "GameCharacter.h"
 #include "GameFramework/SpringArmComponent.h"
 #include "Camera/CameraComponent.h"
+#include "TargetLockComponent.h"
 #include "GamePlayerCharacter.generated.h"
 
 /**
@@ -34,7 +35,7 @@ protected:
 
 	//===================================
 	// Action Input
-
+	void TargetLock();
 
 
 
@@ -52,6 +53,8 @@ protected:
 		USpringArmComponent* MainCamSpringArm;
 	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = "Direction", meta = (AllowPrivateAccess = "true"))
 		FVector MoveDirection;
+	UPROPERTY(BlueprintReadWrite, EditAnywhere, Category = "Lock", meta = (AllowPrivateAccess = true))
+		UTargetLockComponent* TargetLockComponent;
 	float CurrentVelocity;
 
 };
