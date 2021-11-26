@@ -40,6 +40,7 @@ public:
 	bool ReleaseTarget();
 
 	bool IsTargetSetted() { return targetActor.IsValid(); }
+	float GetForgetRange() const { return forgetRange; }
 
 protected:
 	/*

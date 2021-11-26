@@ -109,7 +109,27 @@ void AGamePlayerCharacter::TargetLock()
 	* Camerar가 보고 있는 방향으로 Trace를 이용하여 탐지하고 탐지된 결과 중 가장 거리가 가까운 것을 락온한다.
 	*/
 	
-	AFGame(Log, TEXT("TET"));
+	
+	auto world = GetWorld();
+	if (!world)
+	{
+		AFGame(Error, TEXT("world is nullptr"));
+		return;
+	}
+	FVector start = MainCam->GetComponentLocation();
+	
+	FVector end = (GetActorLocation()-start) + (MainCam->GetForwardVector() * TargetLockComponent->GetForgetRange());
+	float half = TargetLockComponent->GetForgetRange();
+	FVector halfSize = FVector(half, half, half);
+	TArray<AActor*>toIgnore;
+	
+	//Trace 연산
+	UKismetSystemLibrary::BoxTraceSingleForObjects(world,start,end,halfSize,GetActorRotation(),)
+
+
+	//가장 가까운 것을 타겟으로 
+
+
 }
 
 void AGamePlayerCharacter::Tick(float DeltaTime)
