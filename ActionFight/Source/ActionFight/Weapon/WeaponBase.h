@@ -2,7 +2,7 @@
 
 #pragma once
 
-#include "ActionFight.h"
+#include "..\ActionFight.h"
 #include "GameFramework/Actor.h"
 #include "WeaponBase.generated.h"
 

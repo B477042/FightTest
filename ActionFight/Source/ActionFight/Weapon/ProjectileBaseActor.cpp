@@ -2,6 +2,11 @@
 
 
 #include "ProjectileBaseActor.h"
+#include "GameFramework/Actor.h"
+#include "GameFramework/ProjectileMovementComponent.h"
+#include "Particles/ParticleSystemComponent.h"
+#include "Components/ArrowComponent.h"
+#include "Components/AudioComponent.h"
 
 // Sets default values
 AProjectileBaseActor::AProjectileBaseActor()

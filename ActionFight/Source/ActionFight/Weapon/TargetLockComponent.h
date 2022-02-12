@@ -2,7 +2,7 @@
 
 #pragma once
 
-#include "ActionFight.h"
+#include "..\ActionFight.h"
 #include "Components/ActorComponent.h"
 #include "GameFramework/Actor.h"
 #include "TargetLockComponent.generated.h"

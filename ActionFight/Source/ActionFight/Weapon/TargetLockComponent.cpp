@@ -52,7 +52,7 @@ bool UTargetLockComponent::LockOnTarget(AActor* const OtherActor)
 {
 	if (!OtherActor)
 	{
-		AFGame(Error, TEXT("Other Actor is nullptr")));
+		AFGame(Error, TEXT("Other Actor is nullptr"));
 		return false;
 	}
 	//Check Spring Arm is valid

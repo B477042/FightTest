@@ -2,7 +2,7 @@
 
 #pragma once
 
-#include "ActionFight.h"
+#include "..\ActionFight.h"
 #include "Components/ActorComponent.h"
 #include "MagComponent.generated.h"
 

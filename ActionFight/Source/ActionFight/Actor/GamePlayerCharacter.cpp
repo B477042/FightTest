@@ -2,7 +2,7 @@
 
 
 #include "GamePlayerCharacter.h"
-#include "..\public\GamePlayerCharacter.h"
+
 
 AGamePlayerCharacter::AGamePlayerCharacter()
 {

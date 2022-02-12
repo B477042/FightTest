@@ -2,13 +2,14 @@
 
 #pragma once
 
-#include "ActionFight.h"
-#include "GameFramework/Actor.h"
-#include "GameFramework/ProjectileMovementComponent.h"
-#include "Particles/ParticleSystemComponent.h"
-#include "Components/ArrowComponent.h"
-#include "Components/AudioComponent.h"
+#include "..\ActionFight.h"
+
 #include "ProjectileBaseActor.generated.h"
+class AActor;
+class UProjectileMovementComponent;
+class UParticleSystemComponent;
+class UAudioComponent;
+class UArrowComponent;
 
 UCLASS()
 class ACTIONFIGHT_API AProjectileBaseActor : public AActor

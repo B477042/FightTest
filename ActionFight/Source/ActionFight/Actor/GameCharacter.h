@@ -2,12 +2,14 @@
 
 #pragma once
 
-#include "ActionFight.h"
+#include "..\ActionFight.h"
 #include "GameFramework/Character.h"
 #include "Components/ArrowComponent.h"
-#include "StatComponent.h"
-#include "StateComponent.h"
 #include "GameCharacter.generated.h"
+
+class UStatComponent;
+class UStateComponent;
+
 
 UCLASS(Abstract)
 class ACTIONFIGHT_API AGameCharacter : public ACharacter
