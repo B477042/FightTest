@@ -5,8 +5,9 @@
 #include "GameCharacter.h"
 #include "GameFramework/SpringArmComponent.h"
 #include "Camera/CameraComponent.h"
-#include "TargetLockComponent.h"
 #include "GamePlayerCharacter.generated.h"
+
+class UTargetLockComponent;
 
 /**
  * 

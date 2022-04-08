@@ -2,8 +2,8 @@
 
 
 #include "GameCharacter.h"
-#include "..\Actor\Component\StatComponent.h"
-#include "..\Actor\Component\StateComponent.h"
+#include "..\GameActor\Component\StatComponent.h"
+#include "..\GameActor\Component\StateComponent.h"
 // Sets default values
 AGameCharacter::AGameCharacter()
 {

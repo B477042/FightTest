@@ -2,7 +2,7 @@
 
 
 #include "GamePlayerCharacter.h"
-
+#include "../Weapon/TargetLockComponent.h"
 
 AGamePlayerCharacter::AGamePlayerCharacter()
 {
@@ -13,7 +13,6 @@ AGamePlayerCharacter::AGamePlayerCharacter()
 	TargetLockComponent = CreateDefaultSubobject<UTargetLockComponent>(TEXT("TargetLockComponent"));
 	//================================
 	// Init Components Tree
-
 	MainCam->SetupAttachment(MainCamSpringArm);
 	MainCamSpringArm->SetupAttachment(RootComponent);
 
@@ -124,7 +123,7 @@ void AGamePlayerCharacter::TargetLock()
 	TArray<AActor*>toIgnore;
 	
 	//Trace 연산
-	UKismetSystemLibrary::BoxTraceSingleForObjects(world,start,end,halfSize,GetActorRotation(),)
+	//UKismetSystemLibrary::BoxTraceSingleForObjects(world,start,end,halfSize,GetActorRotation(),)
 
 
 	//가장 가까운 것을 타겟으로 

@@ -2,8 +2,8 @@
 
 
 #include "ActionFightGameMode.h"
-#include "..\Actor\GamePlayerCharacter.h"
-#include "..\Actor\GamePlayerController.h"
+#include "..\GameActor\GamePlayerCharacter.h"
+#include "..\GameActor\GamePlayerController.h"
 #include "AFGameState.h"
 #include "AFPlayerState.h"
 
