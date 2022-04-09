@@ -7,6 +7,7 @@
 #include "AFGameState.h"
 #include "AFPlayerState.h"
 
+
 AActionFightGameMode::AActionFightGameMode()
 {
 	DefaultPawnClass = AGamePlayerCharacter::StaticClass();
